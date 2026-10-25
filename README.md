@@ -42,7 +42,7 @@ Raspberry Pi에서 돌리는 클라이언트입니다. 영상 분석과 음성 �
 2. **기기 등록.** 휴대폰이나 PC 브라우저로 웹에 로그인 → 마이페이지 → 내 기기 → **Pi 기기 추가**. 화면에 나오는 **기기 ID**(숫자)와 **기기 키**를 적어 둡니다. 기기 키는 이때 한 번만 보입니다. 잃어버리면 그 기기를 지우고 새로 추가합니다.
 3. **저장소 받기.** Pi에서 `pi` 사용자로:
    ```bash
-   git clone https://github.com/mandur23/elderly_fall_detection_pi_client ~/elderly_fall_detection_pi_client
+   git clone https://github.com/mandur23/Elderly_Fall_Detection_Pi_Client ~/elderly_fall_detection_pi_client
    cd ~/elderly_fall_detection_pi_client
    ```
    다른 위치에 받아도 됩니다. `install.sh`가 서비스 파일의 경로·사용자를 실제 값으로 바꿔 등록합니다.
