@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+# Pi마다 넣고 저장소에 올리지 않는 파일: 기기 키(pi-client.env), 서버 PC의 인증 기관(rootCA.pem), 안내 음성
+pi_client/deploy/pi-client.env
+pi_client/deploy/*.pem
+pi_client/assets/*.wav

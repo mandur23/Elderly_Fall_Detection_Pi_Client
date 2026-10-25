@@ -1,0 +1,22 @@
+# Pi 화면에 현장 화면(/kiosk)을 전체 화면으로 띄우는 사용자 서비스.
+# 데스크톱에 자동 로그인한 사용자(pi)로 실행한다. install.sh가 등록한다:
+#   systemctl --user enable kiosk.service
+#   로그 보기: journalctl --user -u kiosk -f
+# 데스크톱 세션이 graphical-session.target을 켜지 않는 경우를 위해 install.sh가
+# ~/.config/autostart/fall-kiosk.desktop도 만들어 로그인할 때 이 서비스를 시작한다.
+[Unit]
+Description=Fall detection kiosk screen (Chromium)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+# 서버 주소·기기 ID·기기 키·인증 기관 파일. 클라이언트와 같은 파일을 읽는다.
+EnvironmentFile=/home/pi/elderly_fall_detection_pi_client/pi_client/deploy/pi-client.env
+# 서버가 응답할 때까지 기다렸다가 Chromium을 띄운다(chromium-browser / chromium 둘 다 처리).
+ExecStart=/home/pi/elderly_fall_detection_pi_client/pi_client/deploy/kiosk.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

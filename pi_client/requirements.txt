@@ -1,0 +1,18 @@
+# Pi 클라이언트 패키지. install.sh가 .venv에 설치한다.
+#   .venv/bin/pip install -r pi_client/requirements.txt
+#
+# picamera2(카메라 모듈)는 pip로 설치하지 않는다. apt의 python3-picamera2를 쓰고,
+# 가상환경을 --system-site-packages로 만들어 그대로 import한다(install.sh 참고).
+
+# 서버 접속. 13 이상: connect(additional_headers=...)로 X-Device-Key 헤더를 보낸다.
+websockets>=13
+httpx>=0.27
+
+# 프레임 캡처·JPEG 인코딩.
+# numpy 2와 그에 맞춘 opencv 4.12 이상은 apt의 picamera2·simplejpeg(numpy 1.x로 빌드됨)와 함께 쓰면
+# "numpy.dtype size changed" 오류로 카메라가 열리지 않는다. 그래서 numpy 1.x에 맞춘다.
+numpy>=1.23,<2
+opencv-python-headless>=4.8,<4.12
+
+# 스피커 재생·마이크 녹음. apt의 libportaudio2가 필요하다.
+sounddevice>=0.4.6
