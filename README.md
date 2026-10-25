@@ -128,12 +128,17 @@ wav 파일은 저장소에 올리지 않습니다(팀 공유 드라이브에 둡
 
 서비스를 멈추고 터미널에서 실행하면 로그를 바로 볼 수 있습니다. 같은 기기로 두 개를 띄우면 서로 끊으므로 서비스는 꼭 멈춥니다.
 
+실행 파일 `run_client.sh`(= `python run_client.py`)가 `pi_client/deploy/pi-client.env`를 읽어 실행합니다.
+
 ```bash
 sudo systemctl stop pi-client
 cd ~/elderly_fall_detection_pi_client
-set -a; . pi_client/deploy/pi-client.env; set +a
-.venv/bin/python -m pi_client             # Ctrl+C로 종료
+./run_client.sh --check      # 설정과 서버 연결만 확인 (카메라·마이크는 쓰지 않음)
+./run_client.sh              # 실행, Ctrl+C로 종료
+./run_client.sh --fake       # 카메라·마이크 없이 가짜 장치로 실행
 ```
+
+`--check`는 서버 주소·기기 ID·기기 키가 맞는지 확인합니다. 결과: `0` 연결 확인 완료, `1` 서버에 닿지 않음(주소·Wi-Fi·인증서), `2` 설정 빠짐, `3` 서버가 거절(기기 ID·키가 틀렸거나 계정 정지). `--server`, `--device-id`, `--key`, `--env <파일>`로 값을 바꿔 줄 수도 있습니다.
 
 ## 장비 없이 시험 (PC 한 대)
 
